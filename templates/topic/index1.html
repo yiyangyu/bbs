@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>bbs club</title>
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/lib/editor/editor.css">
+    <link rel="stylesheet" href="/static/lib/webuploader/webuploader.css">
+    <link rel="icon" href="//o4j806krb.qnssl.com/public/images/cnode_icon_32.png" type="image/x-icon"/>
+    <script src="/static/lib/jquery-3.0.0.min.js"></script>
+    <script src="/static/lib/markdownit.js"></script>
+    <script src="/static/lib/webuploader/webuploader.withoutimage.js"></script>
+    <script src="/static/lib/editor/editor.js"></script>
+    <script src="/static/lib/editor/ext.js"></script>
+</head>
+<body>
+<!-- navbar -->
+<div class='navbar'>
+    <div class='navbar-inner'>
+        <div class='container'>
+            <a class='brand' href='/'>
+
+                <img src="//o4j806krb.qnssl.com/public/images/cnodejs_light.svg"/>
+
+            </a>
+
+            <form id='search_form' class='navbar-search' action="/search">
+                <input type='text' id='q' name='q' class='search-query span3' value=''/>
+            </form>
+            <ul class='nav pull-right'>
+                <li><a href="{{ url_for('topic.index') }}">首页</a></li>
+
+                <li>
+                    <a href={{ url_for('mail.index')}}>
+
+                       站内私信
+                    </a>
+                </li>
+
+                <!--<li><a href='/getstart'>新手入门</a></li>-->
+                <!--<li><a href='/api'>API</a></li>-->
+
+                <!--<li><a href="/about" target="">关于</a></li>-->
+
+
+                <li><a href='/setting'>设置</a></li>
+                <li>
+                    <a href='/logout' data-method="post" rel="nofollow">退出</a>
+                </li>
+
+            </ul>
+            <a class="btn btn-navbar" id="responsive-sidebar-trigger">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+        </div>
+    </div>
+</div>
+<div id="main">
+
+    <!--<h1>{{ user().username }}</h1>-->
+    <div id="sidebar">
+        <div class="panel">
+
+    <div class="inner">
+      <p>CNode：Node.js专业中文社区</p>
+
+      <div>
+        您可以
+        <a href="/">登录</a>
+        或
+        <a href="/">注册</a>
+        , 也可以
+        <!--<a href="/auth/github">-->
+          <!--<span class="span-info">-->
+            <!--通过 GitHub 登录-->
+          <!--</span>-->
+        </a>
+      </div>
+    </div>
+
+  </div>
+        <!--<div class="panel">-->
+            <!--<div class="header">-->
+                <!--<span class="col_fade">个人信息</span>-->
+            <!--</div>-->
+            <!--<div class="inner">-->
+                <!--<div class="user_card">-->
+                    <!--<div>-->
+                        <!--<a class="user_avatar" href={{ url_for('user.detail', username=user().username) }}>-->
+                            <!--<img src=/uploads/default.png?v=3&amp;amp;s=120 title="user.user_image">-->
+                        <!--</a>-->
+                        <!--<span class="user_name">-->
+                            <!--<a class="dark" href={{ url_for('user.detail', username=user().username) }}>{{ user().username}}-->
+                            <!--</a>-->
+                        <!--</span>-->
+
+                        <!--<div class="board clearfix">-->
+                            <!--<div class="floor">-->
+                                <!--<span class="big">积分: 0 </span>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="space clearfix"></div>-->
+                        <!--<span class="signature">-->
+                            <!--{{ user().note }}-->
+                        <!--</span>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+
+        <div class="panel">
+            <div class="inner">
+                <a href="/topic/new" class="create_topic_btn">
+                    <span class="span-success">发布话题</span>
+                </a>
+            </div>
+        </div>
+
+        <div class='panel'>
+            <div class='header'>
+                <span class='col_fade'>友情社区</span>
+            </div>
+            <div class='inner'>
+                <ol class="friendship-community">
+                    <li>
+                        <a href="https://ruby-china.org/" target="_blank">
+                            <img src="//o4j806krb.qnssl.com/public/images/ruby-china-20150529.png">
+                        </a>
+                    </li>
+                    <div class="sep10"></div>
+                    <li>
+                        <a href="http://golangtc.com/" target="_blank">
+                            <img src="//o4j806krb.qnssl.com/public/images/golangtc-logo.png">
+                        </a>
+                    </li>
+                    <div class="sep10"></div>
+                    <li>
+                        <a href="http://phphub.org/" target="_blank">
+                            <img src="//o4j806krb.qnssl.com/public/images/phphub-logo.png">
+                        </a>
+                    </li>
+                    <div class="sep10"></div>
+                    <li>
+                        <a href="https://testerhome.com/" target="_blank">
+                            <img src="//dn-cnode.qbox.me/FjLUc7IJ2--DqS706etPQ1EGajxK">
+                        </a>
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <div id="content">
+        <div class="panel">
+            <div class="header">
+                <a href="/topic"
+                   class="topic-tab current-tab">
+                    全部
+                </a>
+
+                {% for b in bs %}
+                <a href="/topic?board_id={{ b.id }}"
+                   class="topic-tab current-tab">
+                    {{ b.title }}
+                </a>
+                {% endfor %}
+            </div>
+            <div class="inner no-padding">
+                <div id="topic_list">
+
+                    {% for t in ms1 %}
+                    <div class='cell'>
+
+                        <a class="user_avatar pull-left" href={{ url_for("user.detail", username=t.user().username) }}>
+                        <img src={{ url_for('index.uploads', filename=t.user().user_image, v=3, s=120) }}>
+                        </a>
+
+                        <span class="reply_count pull-left">
+                            <span class="count_of_replies" title="回复数">
+                                {{ t.replies() | count }}
+                            </span>
+                            <span class="count_seperator">/</span>
+                            <span class="count_of_visits" title='点击数'>
+                                {{ t.views }}
+                            </span>
+                        </span>
+
+                        <a class='last_time pull-right'>
+                            <!--<img class="user_small_avatar" src={{ url_for('index.uploads', filename=t.user().user_image, v=3, s=120) }}>-->
+                            <span class="last_active_time">{{ t.last_time | delta }}</span>
+                        </a>
+
+
+                        <div class="topic_title_wrapper">
+
+
+                            <span class='put_top'>置顶</span>
+
+
+                            <a class='topic_title' href="{{ url_for('topic.detail', id=t.id) }}" title="{{ t.title }}">
+                                {{ t.title }}
+                            </a>
+                        </div>
+                    </div>
+
+                    <!--<div class="cell">-->
+                        <!--<a class='last_time pull-right'>-->
+                            <!--<span class="last_active_time">{{ t.last_time | delta }}</span>-->
+                        <!--</a>-->
+                        <!--<div class="topic_title_wrapper">-->
+                            <!--<a class="user_avatar pull-left">-->
+                                <!--&lt;!&ndash;<img src={{ '/uploads/' + t.user().user_image + '?v=3&amp;s=120' }}&ndash;&gt;-->
+                                <!--&lt;!&ndash;title="atian25"/>&ndash;&gt;-->
+                                <!--<img src={{ url_for('index.uploads', filename=t.user().user_image, v=3, s=120) }}>-->
+
+                            <!--</a>-->
+                            <!--<span class='put_good'>置顶</span>-->
+                            <!--<a class="topic_title" href="{{ url_for('topic.detail', id=t.id) }}">-->
+                                <!--{{ t.title }}-->
+                            <!--</a>-->
+                            <!--<span>{{ t.replies() | count }} / {{ t.views }}</span>-->
+                            <!--&lt;!&ndash;<a class="topic_title" href="{{ url_for('topic.delete', id=t.id, token=token) }}">&ndash;&gt;-->
+                            <!--&lt;!&ndash;删除&ndash;&gt;-->
+                            <!--&lt;!&ndash;</a>&ndash;&gt;-->
+
+                        <!--</div>-->
+                    <!--</div>-->
+                    {% endfor %}
+
+                    {% for t in ms2[start:start+num] %}
+                    <div class='cell'>
+
+                        <a class="user_avatar pull-left" href={{ url_for("user.detail", username=t.user().username) }}>
+                        <img src={{ url_for('index.uploads', filename=t.user().user_image, v=3, s=120) }}>
+                        </a>
+
+                        <span class="reply_count pull-left">
+                            <span class="count_of_replies" title="回复数">
+                                {{ t.replies() | count }}
+                            </span>
+                            <span class="count_seperator">/</span>
+                            <span class="count_of_visits" title='点击数'>
+                                {{ t.views }}
+                            </span>
+                        </span>
+
+                        <a class='last_time pull-right'>
+                            <!--<img class="user_small_avatar" src={{ url_for('index.uploads', filename=t.user().user_image, v=3, s=120) }}>-->
+                            <span class="last_active_time">{{ t.last_time | delta }}</span>
+                        </a>
+
+
+                        <div class="topic_title_wrapper">
+
+
+                            <span class='topiclist-tab'>{{ t.board().title }}</span>
+
+
+                            <a class='topic_title' href="{{ url_for('topic.detail', id=t.id) }}" title="{{ t.title }}">
+                                {{ t.title }}
+                            </a>
+                        </div>
+                    </div>
+                    <!--<div class="cell">-->
+                        <!--<a class='last_time pull-right'>-->
+                            <!--<span class="last_active_time">{{ t.last_time | delta }}</span>-->
+                        <!--</a>-->
+                        <!--<div class="topic_title_wrapper">-->
+                            <!--<a class="user_avatar pull-left">-->
+                                <!--&lt;!&ndash;<img src={{ '/uploads/' + t.user().user_image + '?v=3&amp;s=120' }}&ndash;&gt;-->
+                                <!--&lt;!&ndash;title="atian25"/>&ndash;&gt;-->
+                                <!--<img src={{ url_for('index.uploads', filename=t.user().user_image, v=3, s=120) }}>-->
+
+                            <!--</a>-->
+                            <!--<span class='topiclist-tab'>{{ t.board().title }}</span>-->
+                            <!--<a class="topic_title" href="{{ url_for('topic.detail', id=t.id) }}">-->
+                                <!--{{ t.title }}-->
+                            <!--</a>-->
+                            <!--<span>{{ t.replies() | count }} / {{ t.views }}</span>-->
+
+                            <!--&lt;!&ndash;<a class="topic_title" href="{{ url_for('topic.delete', id=t.id, token=token) }}">&ndash;&gt;-->
+                            <!--&lt;!&ndash;删除&ndash;&gt;-->
+                            <!--&lt;!&ndash;</a>&ndash;&gt;-->
+
+                        <!--</div>-->
+                    <!--</div>-->
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id='footer'>
+    <div id='footer_main'>
+        <div class="links">
+            <a class='dark' href='/rss'>RSS</a>
+            |
+            <a class='dark' href='https://github.com/yiyangyu/bbs/'>源码地址</a>
+        </div>
+
+        <div class='col_fade'>
+
+            <p>CNode 社区为国内最专业的 Node.js 开源技术社区，致力于 Node.js 的技术研究。</p>
+            <p>服务器赞助商为
+                <a href="http://www.ucloud.cn/?utm_source=zanzhu&utm_campaign=cnodejs&utm_medium=display&utm_content=yejiao&ytag=cnodejs_logo"
+                   target="_blank"
+                   class="sponsor_outlink" data-label="ucloud_bottom">
+                    <img src="//dn-cnode.qbox.me/FuIpEaM9bvsZKnQ3QfPtBHWQmLM9" title="ucloud"
+                         alt="ucloud" width="92px"/>
+                </a>
+                ，存储赞助商为
+                <a href="http://www.qiniu.com/?ref=cnode" target="_blank"
+                   class="sponsor_outlink" data-label="qiniu_bottom">
+                    <img src="//dn-cnode.qbox.me/Fg0jtDIcTqVC049oVu5-sn6Om4NX" title="七牛云存储"
+                         alt="七牛云存储" width="115px"/>
+                </a>
+                ，由<a href="https://alinode.aliyun.com/?ref=cnode" target="_blank"
+                     class="sponsor_outlink" data-label="alinode_bottom">
+                    <img src="//dn-cnode.qbox.me/FpMZk31PDyxkC8yStmMQL4XroaGD" title="alinode"
+                         alt="alinode" height="54px" width="166px"/>
+                </a>提供应用性能服务。
+            </p>
+            <p>新手搭建 Node.js 服务器，推荐使用无需备案的 <a href="https://www.digitalocean.com/?refcode=eba02656eeb3">DigitalOcean(https://www.digitalocean.com/)</a>
+            </p>
+        </div>
+
+
+    </div>
+</div>
+<script>
+  (function () {
+    var editor = new Editor();
+    editor.render($('.editor')[0]);
+  })();
+
+
+</script>
+</body>
+</html>

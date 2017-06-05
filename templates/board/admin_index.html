@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>board admin</title>
+</head>
+<body>
+    <h1>管理员:{{ user().username }}</h1>
+    <form action="/board/add" method="post">
+        <input name="title">
+        <br>
+        <button>add</button>
+    </form>
+    {% for b in bs %}
+    <div>
+        {{ b.title }}
+        <a class="topic_title" href="{{ url_for('.delete', board_id=b.id) }}">
+                                删除
+        </a>
+    </div>
+    {% endfor %}
+</body>
+</html>

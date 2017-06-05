@@ -1,0 +1,91 @@
+2017-05-22 22:19:41,221 INFO  * Restarting with stat
+2017-05-22 22:19:42,759 WARNING  * Debugger is active!
+2017-05-22 22:19:42,762 INFO  * Debugger PIN: 180-480-702
+2017-05-22 22:19:43,855 INFO  * Running on http://0.0.0.0:2000/ (Press CTRL+C to quit)
+2017-05-22 22:19:56,816 INFO 127.0.0.1 - - [22/May/2017 22:19:56] "GET /topic/ HTTP/1.1" 200 -
+22:19:56 123333
+2017-05-22 22:19:56,826 INFO 127.0.0.1 - - [22/May/2017 22:19:56] "GET / HTTP/1.1" 200 -
+2017-05-22 22:19:56,944 INFO 127.0.0.1 - - [22/May/2017 22:19:56] "GET /topic/ HTTP/1.1" 200 -
+2017-05-22 22:19:57,213 INFO 127.0.0.1 - - [22/May/2017 22:19:57] "GET /static/images/search.png HTTP/1.1" 404 -
+2017-05-22 22:20:22,270 INFO  * Detected change in 'C:\\pycharm\\bbs\\routes\\index.py', reloading
+2017-05-22 22:20:22,879 INFO  * Restarting with stat
+2017-05-22 22:20:24,470 WARNING  * Debugger is active!
+2017-05-22 22:20:24,473 INFO  * Debugger PIN: 180-480-702
+2017-05-22 22:20:25,322 INFO  * Running on http://0.0.0.0:2000/ (Press CTRL+C to quit)
+2017-05-22 22:20:26,552 INFO 127.0.0.1 - - [22/May/2017 22:20:26] "GET / HTTP/1.1" 200 -
+2017-05-22 22:21:46,144 INFO  * Restarting with stat
+2017-05-22 22:21:47,666 WARNING  * Debugger is active!
+2017-05-22 22:21:47,669 INFO  * Debugger PIN: 180-480-702
+2017-05-22 22:21:48,511 INFO  * Running on http://0.0.0.0:2000/ (Press CTRL+C to quit)
+22:21:48 [2, 3, 4] {'jk': 23}
+2017-05-22 22:21:48,586 INFO 127.0.0.1 - - [22/May/2017 22:21:48] "GET / HTTP/1.1" 200 -
+2017-05-22 22:22:03,465 INFO  * Detected change in 'C:\\pycharm\\bbs\\routes\\index.py', reloading
+2017-05-22 22:22:03,633 INFO  * Restarting with stat
+2017-05-22 22:22:05,391 WARNING  * Debugger is active!
+2017-05-22 22:22:05,394 INFO  * Debugger PIN: 180-480-702
+2017-05-23 15:28:33,699 INFO  * Restarting with stat
+2017-05-23 15:28:35,229 WARNING  * Debugger is active!
+2017-05-23 15:28:35,232 INFO  * Debugger PIN: 180-480-702
+2017-05-23 15:28:36,155 INFO  * Running on http://0.0.0.0:2000/ (Press CTRL+C to quit)
+2017-05-23 15:28:36,458 INFO 127.0.0.1 - - [23/May/2017 15:28:36] "GET / HTTP/1.1" 200 -
+2017-05-23 15:28:36,495 INFO 127.0.0.1 - - [23/May/2017 15:28:36] "GET /static/css/bootstrap.min.css HTTP/1.1" 304 -
+2017-05-23 15:28:37,422 INFO 127.0.0.1 - - [23/May/2017 15:28:37] "GET /favicon.ico HTTP/1.1" 404 -
+2017-05-23 15:28:39,881 INFO 127.0.0.1 - - [23/May/2017 15:28:39] "POST /login HTTP/1.1" 302 -
+2017-05-23 15:28:40,351 INFO 127.0.0.1 - - [23/May/2017 15:28:40] "GET /topic/ HTTP/1.1" 200 -
+2017-05-23 15:28:40,474 INFO 127.0.0.1 - - [23/May/2017 15:28:40] "GET /static/css/style.css HTTP/1.1" 304 -
+2017-05-23 15:28:40,687 INFO 127.0.0.1 - - [23/May/2017 15:28:40] "GET /static/lib/editor/editor.css HTTP/1.1" 304 -
+2017-05-23 15:28:40,698 INFO 127.0.0.1 - - [23/May/2017 15:28:40] "GET /static/lib/webuploader/webuploader.css HTTP/1.1" 304 -
+2017-05-23 15:28:40,705 INFO 127.0.0.1 - - [23/May/2017 15:28:40] "GET /static/lib/jquery-3.0.0.min.js HTTP/1.1" 304 -
+2017-05-23 15:28:40,709 INFO 127.0.0.1 - - [23/May/2017 15:28:40] "GET /static/lib/markdownit.js HTTP/1.1" 304 -
+2017-05-23 15:28:40,713 INFO 127.0.0.1 - - [23/May/2017 15:28:40] "GET /static/lib/webuploader/webuploader.withoutimage.js HTTP/1.1" 304 -
+2017-05-23 15:28:40,782 INFO 127.0.0.1 - - [23/May/2017 15:28:40] "GET /static/lib/editor/editor.js HTTP/1.1" 304 -
+2017-05-23 15:28:41,000 INFO 127.0.0.1 - - [23/May/2017 15:28:41] "GET /static/lib/editor/ext.js HTTP/1.1" 304 -
+2017-05-23 15:28:41,225 INFO 127.0.0.1 - - [23/May/2017 15:28:41] "GET /uploads/6346513.png?s=120&v=3 HTTP/1.1" 304 -
+2017-05-23 15:28:41,451 INFO 127.0.0.1 - - [23/May/2017 15:28:41] "GET /uploads/852a36f080608614f9f725bf9c74a18b.jpg?s=120&v=3 HTTP/1.1" 304 -
+2017-05-23 15:28:41,456 INFO 127.0.0.1 - - [23/May/2017 15:28:41] "GET /static/images/search.png HTTP/1.1" 404 -
+2017-05-23 15:28:41,531 INFO 127.0.0.1 - - [23/May/2017 15:28:41] "GET /uploads/default.png?s=120&v=3 HTTP/1.1" 304 -
+2017-05-23 22:59:07,128 INFO  * Restarting with stat
+2017-05-23 22:59:08,552 WARNING  * Debugger is active!
+2017-05-23 22:59:08,555 INFO  * Debugger PIN: 180-480-702
+2017-05-23 22:59:10,861 INFO  * Running on http://0.0.0.0:2000/ (Press CTRL+C to quit)
+2017-05-23 22:59:53,030 INFO  * Restarting with stat
+2017-05-23 22:59:54,508 WARNING  * Debugger is active!
+2017-05-23 22:59:54,511 INFO  * Debugger PIN: 180-480-702
+2017-05-23 22:59:55,488 INFO  * Running on http://0.0.0.0:2000/ (Press CTRL+C to quit)
+2017-05-23 22:59:56,608 INFO 127.0.0.1 - - [23/May/2017 22:59:56] "GET / HTTP/1.1" 200 -
+2017-05-23 23:00:24,949 INFO  * Detected change in 'C:\\pycharm\\bbs\\routes\\index.py', reloading
+2017-05-23 23:00:25,511 INFO  * Restarting with stat
+2017-05-23 23:00:27,018 WARNING  * Debugger is active!
+2017-05-23 23:00:27,021 INFO  * Debugger PIN: 180-480-702
+2017-05-23 23:00:33,477 INFO  * Running on http://0.0.0.0:2000/ (Press CTRL+C to quit)
+2017-05-23 23:00:35,840 INFO 127.0.0.1 - - [23/May/2017 23:00:35] "GET / HTTP/1.1" 200 -
+2017-05-23 23:00:47,855 INFO  * Detected change in 'C:\\pycharm\\bbs\\routes\\index.py', reloading
+2017-05-23 23:00:47,976 INFO  * Restarting with stat
+2017-05-23 23:00:49,540 WARNING  * Debugger is active!
+2017-05-23 23:00:49,542 INFO  * Debugger PIN: 180-480-702
+2017-05-23 23:00:50,394 INFO  * Running on http://0.0.0.0:2000/ (Press CTRL+C to quit)
+2017-05-24 08:17:35,674 INFO  * Restarting with stat
+2017-05-24 08:17:37,281 WARNING  * Debugger is active!
+2017-05-24 08:17:37,284 INFO  * Debugger PIN: 180-480-702
+2017-05-24 08:17:37,293 INFO  * Running on http://0.0.0.0:2000/ (Press CTRL+C to quit)
+2017-05-24 08:17:37,564 INFO 127.0.0.1 - - [24/May/2017 08:17:37] "GET / HTTP/1.1" 200 -
+2017-05-24 08:17:37,689 INFO 127.0.0.1 - - [24/May/2017 08:17:37] "GET /static/css/bootstrap.min.css HTTP/1.1" 304 -
+2017-05-24 08:17:38,192 INFO 127.0.0.1 - - [24/May/2017 08:17:38] "GET /favicon.ico HTTP/1.1" 404 -
+2017-05-24 08:17:43,023 INFO 127.0.0.1 - - [24/May/2017 08:17:43] "POST /login HTTP/1.1" 302 -
+2017-05-24 08:17:43,405 INFO 127.0.0.1 - - [24/May/2017 08:17:43] "GET /topic/ HTTP/1.1" 200 -
+2017-05-24 08:17:43,538 INFO 127.0.0.1 - - [24/May/2017 08:17:43] "GET /static/css/style.css HTTP/1.1" 304 -
+2017-05-24 08:17:43,835 INFO 127.0.0.1 - - [24/May/2017 08:17:43] "GET /static/lib/jquery-3.0.0.min.js HTTP/1.1" 304 -
+2017-05-24 08:17:43,840 INFO 127.0.0.1 - - [24/May/2017 08:17:43] "GET /static/lib/webuploader/webuploader.css HTTP/1.1" 304 -
+2017-05-24 08:17:43,844 INFO 127.0.0.1 - - [24/May/2017 08:17:43] "GET /static/lib/editor/editor.css HTTP/1.1" 304 -
+2017-05-24 08:17:43,849 INFO 127.0.0.1 - - [24/May/2017 08:17:43] "GET /static/lib/markdownit.js HTTP/1.1" 304 -
+2017-05-24 08:17:43,854 INFO 127.0.0.1 - - [24/May/2017 08:17:43] "GET /static/lib/webuploader/webuploader.withoutimage.js HTTP/1.1" 304 -
+2017-05-24 08:17:43,858 INFO 127.0.0.1 - - [24/May/2017 08:17:43] "GET /static/lib/editor/editor.js HTTP/1.1" 304 -
+2017-05-24 08:17:44,142 INFO 127.0.0.1 - - [24/May/2017 08:17:44] "GET /static/lib/editor/ext.js HTTP/1.1" 304 -
+2017-05-24 08:17:44,322 INFO 127.0.0.1 - - [24/May/2017 08:17:44] "GET /static/images/search.png HTTP/1.1" 404 -
+2017-05-24 08:17:44,496 INFO 127.0.0.1 - - [24/May/2017 08:17:44] "GET /uploads/6346513.png?v=3&s=120 HTTP/1.1" 200 -
+2017-05-24 08:17:44,521 INFO 127.0.0.1 - - [24/May/2017 08:17:44] "GET /uploads/852a36f080608614f9f725bf9c74a18b.jpg?v=3&s=120 HTTP/1.1" 200 -
+2017-05-24 08:17:44,556 INFO 127.0.0.1 - - [24/May/2017 08:17:44] "GET /uploads/default.png?v=3&s=120 HTTP/1.1" 304 -
+2017-05-24 08:18:52,470 INFO 127.0.0.1 - - [24/May/2017 08:18:52] "POST /login HTTP/1.1" 302 -
+2017-05-24 08:18:52,770 INFO 127.0.0.1 - - [24/May/2017 08:18:52] "POST /login HTTP/1.1" 302 -
+2017-05-24 08:18:53,105 INFO 127.0.0.1 - - [24/May/2017 08:18:53] "GET /topic/ HTTP/1.1" 200 -
+2017-05-24 08:18:53,644 INFO 127.0.0.1 - - [24/May/2017 08:18:53] "GET /static/images/search.png HTTP/1.1" 404 -

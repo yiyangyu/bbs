@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>bbs admin</title>
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/lib/editor/editor.css">
+    <link rel="stylesheet" href="/static/lib/webuploader/webuploader.css">
+    <script src="/static/lib/jquery-3.0.0.min.js"></script>
+    <script src="/static/lib/markdownit.js"></script>
+    <script src="/static/lib/webuploader/webuploader.withoutimage.js"></script>
+    <script src="/static/lib/editor/editor.js"></script>
+    <script src="/static/lib/editor/ext.js"></script>
+</head>
+<body>
+<div id="main">
+    <h1>{{ user().username }}</h1>
+    <div id="sidebar">
+        <div class="panel">
+            <div class="inner">
+                <a href="/topic/new" class="create_topic_btn">
+                    <span class="span-success">发布话题</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div id="content">
+        <div class="panel">
+            <div class="header">
+                <a href="/topic"
+                   class="topic-tab current-tab">
+                    全部
+                </a>
+
+                {% for b in bs %}
+                <a href="/topic?board_id={{ b.id }}"
+                   class="topic-tab current-tab">
+                    {{ b.title }}
+                </a>
+                {% endfor %}
+            </div>
+            <div class="inner post">
+                <div class="topic_list">
+
+                    {% for t in ms1 %}
+                    <div class="cell">
+                        <a class='last_time pull-right'>
+                             <span class="last_active_time">{{ t.last_time | delta }}</span>
+                         </a>
+                        <div class="topic_title_wrapper">
+                            <a class="user_avatar pull-left">
+                                 <!--<img src={{ '/uploads/' + t.user().user_image + '?v=3&amp;s=120' }}-->
+                            <!--title="atian25"/>-->
+                                <img src={{ url_for('index.uploads', filename=t.user().user_image, v=3, s=120) }}>
+
+                            </a>
+                            <!--{% if name and name == 'admin' %}-->
+                            <!--{% else %}-->
+                            <!--{% endif %}-->
+                            <span class='put_good'>置顶</span>
+                            <a class="topic_title" href="{{ url_for('topic.detail', id=t.id) }}">
+                                {{ t.title }}
+                            </a>
+                            <span>{{ t.replies() | count }} / {{ t.views }}</span>
+                            <a class="topic_title" href="{{ url_for('topic.delete', id=t.id, token=token) }}">
+                                删除
+                            </a>
+                            <a  href="{{ url_for('topic.setnotop', id=t.id) }}">
+                                取消置顶
+                            </a>
+
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                    {% for t in ms2 %}
+                    <div class="cell">
+                        <a class='last_time pull-right'>
+                             <span class="last_active_time">{{ t.last_time | delta }}</span>
+                         </a>
+                        <div class="topic_title_wrapper">
+                            <a class="user_avatar pull-left">
+                                 <!--<img src={{ '/uploads/' + t.user().user_image + '?v=3&amp;s=120' }}-->
+                            <!--title="atian25"/>-->
+                                <img src={{ url_for('index.uploads', filename=t.user().user_image, v=3, s=120) }}>
+
+                            </a>
+                            <span class='topiclist-tab'>{{ t.board().title }}</span>
+                            <a class="topic_title" href="{{ url_for('topic.detail', id=t.id) }}">
+                                {{ t.title }}
+                            </a>
+                            <span>{{ t.replies() | count }} / {{ t.views }}</span>
+                            <a class="topic_title" href="{{ url_for('topic.delete', id=t.id, token=token) }}">
+                                删除
+                            </a>
+                             <a  href="{{ url_for('topic.settop', id=t.id) }}">
+                                置顶
+                            </a>
+
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <!--<div class="paginator">-->
+        <!--<span class="prev">-->
+            <!--&lt;前页-->
+        <!--</span>-->
+
+
+
+                <!--<span class="thispage">1</span>-->
+
+            <!--<a href="?start=25&amp;filter=" >2</a>-->
+
+
+            <!--<a href="?start=50&amp;filter=" >3</a>-->
+
+
+            <!--<a href="?start=75&amp;filter=" >4</a>-->
+
+
+            <!--<a href="?start=100&amp;filter=" >5</a>-->
+
+
+            <!--<a href="?start=125&amp;filter=" >6</a>-->
+
+
+            <!--<a href="?start=150&amp;filter=" >7</a>-->
+
+
+            <!--<a href="?start=175&amp;filter=" >8</a>-->
+
+
+            <!--<a href="?start=200&amp;filter=" >9</a>-->
+
+
+            <!--<a href="?start=225&amp;filter=" >10</a>-->
+
+        <!--<span class="next">-->
+            <!--<link rel="next" href="?start=25&amp;filter="/>-->
+            <!--<a href="?start=25&amp;filter=" >后页&gt;</a>-->
+        <!--</span>-->
+
+            <!--<span class="count">(共250条)</span>-->
+        <!--</div>-->
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+  (function () {
+    var editor = new Editor();
+    editor.render($('.editor')[0]);
+  })();
+
+</script>
+</body>
+</html>

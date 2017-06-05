@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>个人主页</title>
+</head>
+<body>
+{% extends "base.html"%}
+<div id="main">
+  {% block content %}
+    <div id="content">
+  <div class="panel">
+    <div class="header">
+      <ul class="breadcrumb">
+        <li><a href={{ url_for('topic.index') }}>主页</a><span class="divider">/</span></li>
+      </ul>
+    </div>
+    <div class="inner userinfo">
+      <div class="user_big_avatar">
+          <img src={{ url_for('index.uploads', filename=user.user_image, v=3, s=120) }}>
+      </div>
+      <span class="user_name"><a class="dark">{{ user.username }}</a></span>
+
+
+      <div class="user_profile">
+                    <ul class="unstyled">
+                        <span class="big">0</span> 积分
+                        <li>
+                            <i class="fa fa-lg fa-fw fa-home"></i>
+                            <a class="dark">
+                                邮件：{{ user.address }}
+                            </a>
+                        </li>
+                        <li>
+                            <i class="fa fa-lg fa-fw fa-github"></i>
+                            <a class="dark">
+                                地点：{{ user.location }}
+                            </a>
+                        </li>
+                        <li>
+                            <i class="fa fa-lg fa-fw fa-github"></i>
+                            <a class="dark">
+                                个性签名：{{ user.note }}
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+      <p class="col_fade">注册时间 {{ user.ct | delta }} </p>
+
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="header">
+      <span class="col_fade">最近创建的话题</span>
+        {% for t in ts %}
+                    <div class='cell'>
+
+                        <a class="user_avatar pull-left" href={{ url_for("user.detail", username=t.user().username) }}>
+                        <img src={{ url_for('index.uploads', filename=t.user().user_image, v=3, s=120) }}>
+                        </a>
+
+                        <span class="reply_count pull-left">
+                            <span class="count_of_replies" title="回复数">
+                                {{ t.replies() | count }}
+                            </span>
+                            <span class="count_seperator">/</span>
+                            <span class="count_of_visits" title='点击数'>
+                                {{ t.views }}
+                            </span>
+                        </span>
+
+                        <a class='last_time pull-right'>
+                            <!--<img class="user_small_avatar" src={{ url_for('index.uploads', filename=t.user().user_image, v=3, s=120) }}>-->
+                            <span class="last_active_time">{{ t.last_time | delta }}</span>
+                        </a>
+
+
+                        <div class="topic_title_wrapper">
+
+
+                            <span class='topiclist-tab'>{{ t.board().title }}</span>
+
+
+                            <a class='topic_title' href="{{ url_for('topic.detail', id=t.id) }}" title="{{ t.title }}">
+                                {{ t.title }}
+                            </a>
+                        </div>
+                    </div>
+        {% endfor %}
+    </div>
+
+    <!--<div class="inner">-->
+      <!--<p>无话题</p>-->
+    <!--</div>-->
+
+  </div>
+
+  <div class="panel">
+    <div class="header">
+      <span class="col_fade">最近参与的话题</span>
+        {% for t in tss %}
+                    <div class='cell'>
+
+                        <a class="user_avatar pull-left" href={{ url_for("user.detail", username=t.user().username) }}>
+                        <img src={{ url_for('index.uploads', filename=t.user().user_image, v=3, s=120) }}>
+                        </a>
+
+                        <span class="reply_count pull-left">
+                            <span class="count_of_replies" title="回复数">
+                                {{ t.replies() | count }}
+                            </span>
+                            <span class="count_seperator">/</span>
+                            <span class="count_of_visits" title='点击数'>
+                                {{ t.views }}
+                            </span>
+                        </span>
+
+                        <a class='last_time pull-right'>
+                            <!--<img class="user_small_avatar" src={{ url_for('index.uploads', filename=t.user().user_image, v=3, s=120) }}>-->
+                            <span class="last_active_time">{{ t.last_time | delta }}</span>
+                        </a>
+
+
+                        <div class="topic_title_wrapper">
+
+
+                            <span class='topiclist-tab'>{{ t.board().title }}</span>
+
+
+                            <a class='topic_title' href="{{ url_for('topic.detail', id=t.id) }}" title="{{ t.title }}">
+                                {{ t.title }}
+                            </a>
+                        </div>
+                    </div>
+        {% endfor %}
+    </div>
+
+    <!--<div class="inner">-->
+      <!--<p>无话题</p>-->
+    <!--</div>-->
+
+  </div>
+    </div>
+</div>
+  {% endblock %}
+
+
+
+</body>
+</html>

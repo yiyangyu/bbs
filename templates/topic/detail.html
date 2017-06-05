@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>bbs club</title>
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/lib/editor/editor.css">
+    <link rel="stylesheet" href="/static/lib/webuploader/webuploader.css">
+    <script src="/static/lib/jquery-3.0.0.min.js"></script>
+    <script src="/static/lib/markdownit.js"></script>
+    <script src="/static/lib/webuploader/webuploader.withoutimage.js"></script>
+    <script src="/static/lib/editor/editor.js"></script>
+    <script src="/static/lib/editor/ext.js"></script>
+</head>
+<body>
+{% extends "base.html"%}
+<div id="main">
+    <!--<h1>{{ user.username }}</h1>-->
+    {% block sidebar %}
+        <div id="sidebar">
+            <div class="panel">
+                <div class="header">
+                    <span class="col_fade">作者信息</span>
+                </div>
+                <div class="inner">
+                <div class="user_card">
+                    <div>
+                        <a class="user_avatar" href="/user/{{ user.username }}">
+                            <img src={{ url_for('index.uploads', filename=user.user_image, v=3, s=120) }}>
+                        </a>
+                        <span class="user_name"><a class="dark" href="/user/{{ user.username }}">{{ user.username }}</a></span>
+
+                        <div class="board clearfix">
+                            <div class="floor">
+                                <span class="big">积分: 0 </span>
+                            </div>
+                        </div>
+                        <div class="space clearfix"></div>
+                        <span class="signature">
+                            {{ user.note }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <!--<div class="panel">-->
+                    <!--<div class="inner">-->
+                        <!--<a href="/topic/new" class="create_topic_btn">-->
+                            <!--<span class="span-success">发布话题</span>-->
+                        <!--</a>-->
+                    <!--</div>-->
+                <!--</div>-->
+        </div>
+    {% endblock %}
+
+    {% block content %}
+    <div id="content">
+        <div class='panel'>
+            <div class='header topic_header'>
+        <span class="topic_full_title">
+			{{ topic.title }}
+      	</span>
+                <div class="changes">
+            <span>
+                发布于 {{ topic.ct | delta }}
+            </span>
+                    <span>
+                作者
+                {{  username }}
+        	</span>
+                    <span>
+          	    {{ topic.views }} 次浏览
+        	</span>
+                    <span>
+                来自 <a href="{{ url_for('topic.index', board_id=topic.board_id) }}">
+                {{ topic.board().title }}
+                    </a>
+            </span>
+                </div>
+            </div>
+
+            <div class='inner topic'>
+                <div class='topic_content'>
+                    <div class="markdown-text">
+                        {{ markdown(topic.content) | safe }}
+                        <!--{{ topic.content }}-->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class='panel'>
+        <div class='header'>
+            <span class='col_fade'>
+                <!-- 过滤器 -->
+                {{ topic.replies() | count }} 回复
+            </span>
+        </div>
+        {% for r in topic.replies() %}
+        <div class='cell reply_area reply_item'>
+            <div class='author_content'>
+                <a href={{ url_for('user.detail', username=r.user().username) }} class="user_avatar" >
+                    <img src={{ url_for('index.uploads', filename=r.user().user_image, v=3, s=120) }}>
+                </a>
+                <div class='user_info'>
+                    <a class='dark reply_author'>
+                        {{ r.user().username }}
+                    </a>
+                    <a class="reply_time">
+                        {{ loop.index }}楼 • {{ r.ct | delta }}
+                    </a>
+                </div>
+                <div class='user_action'>
+                    <span>
+                        <i class="fa up_btn
+                          fa-thumbs-o-up
+                          invisible" title="喜欢"></i>
+                        <span class="up-count">
+                        </span>
+                    </span>
+                </div>
+            </div>
+            <div class='reply_content from-leiwei1991'>
+                <div class="markdown-text">
+                    {{ markdown(r.content, output_format = 'html') | safe }}
+                    <!--{{ r.content }}-->
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+            <div class="panel">
+    <div class="header">
+      <span class="col_fade">添加回复</span>
+    </div>
+    <div class="inner reply">
+      <form id="reply_form" action={{ url_for('reply.add') }} method="post">
+
+        <div class="markdown_editor in_editor">
+          <div class="markdown_in_editor">
+            <input type="hidden" name="topic_id" value="{{ topic.id }}">
+            <textarea class="editor" name="content" rows="8" ></textarea>
+              <!--<div class="editor-toolbar"><a class="eicon-bold"></a><a class="eicon-italic"></a><i class="separator">|</i><a class="eicon-quote"></a><a class="eicon-unordered-list"></a><a class="eicon-ordered-list"></a><i class="separator">|</i><a class="eicon-link"></a><a class="eicon-image"></a><i class="separator">|</i><a class="eicon-info" href="http://lab.lepture.com/editor/markdown" target="_blank"></a><a class="eicon-preview"></a><a class="eicon-fullscreen"></a></div><div class="CodeMirror cm-s-paper"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; padding: 0px; width: 1000px; height: 1em; outline: none; font-size: 4px;"></textarea></div><div class="CodeMirror-hscrollbar" style="left: 0px;"><div style="height: 1px;"></div></div><div class="CodeMirror-vscrollbar"><div style="width: 1px;"></div></div><div class="CodeMirror-scrollbar-filler"></div><div class="CodeMirror-gutter-filler"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="min-width: 41px; margin-left: 0px; min-height: 36px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines"><div style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>​</span></pre></div><div style="position: relative; z-index: 1; display: none;"></div><div class="CodeMirror-code"><pre>&nbsp;</pre></div><div class="CodeMirror-cursor" style="left: 4px; top: 5px; height: 17px;">&nbsp;</div><div class="CodeMirror-cursor CodeMirror-secondarycursor" style="display: none;">&nbsp;</div></div></div></div></div><div style="position: absolute; height: 30px; width: 1px; top: 36px;"></div><div class="CodeMirror-gutters" style="display: none; height: 160px;"></div></div></div>-->
+
+            <div class="editor_buttons">
+              <input class="span-primary submit_btn" type="submit" data-loading-text="回复中.." value="回复">
+            </div>
+          </div>
+
+        </div>
+
+        <!--<input type="hidden" name="_csrf" id="_csrf" value="p6cfr6qO-1-reJ37ydb2ituHj3mH64w-pUnc">-->
+      </form>
+    </div>
+  </div>
+
+        <!--<div>-->
+            <!--<form action="{{ url_for('reply.add') }}" method="post">-->
+                <!--<input type="hidden" name="topic_id" value="{{ topic.id }}">-->
+                <!--<textarea name="content"></textarea>-->
+                <!--<button>添加回复</button>-->
+            <!--</form>-->
+        <!--</div>-->
+        </div>
+
+    </div>
+
+        {% endblock %}
+
+
+</body>
+</html>

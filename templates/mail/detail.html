@@ -1,0 +1,53 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+    <!--<meta charset="UTF-8">-->
+    <!--<title>mail</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<p>收件人id： {{ mail.receiver_id }}</p>-->
+<!--<p>发件人id： {{ mail.sender_id }}</p>-->
+<!--<p>内容: {{ mail.content }}</p>-->
+
+<!--</body>-->
+<!--</html>-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>base.html</title>
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/lib/editor/editor.css">
+    <link rel="stylesheet" href="/static/lib/webuploader/webuploader.css">
+    <script src="/static/lib/jquery-3.0.0.min.js"></script>
+    <script src="/static/lib/markdownit.js"></script>
+    <script src="/static/lib/webuploader/webuploader.withoutimage.js"></script>
+    <script src="/static/lib/editor/editor.js"></script>
+    <script src="/static/lib/editor/ext.js"></script>
+</head>
+<body>
+{% extends "base.html"%}
+<div id="main">
+    {% block content %}
+    <div id="content">
+    <div class="panel">
+            <div class="header">
+                <ul class="breadcrumb">
+                    <li><a href="/">主页</a><span class="divider">/</span></li>
+                    <li class="active"><a href="/mail">私信</a></li>
+                </ul>
+            </div>
+            <div class="inner topic">
+                <div class="topic_content">
+                    <div class="markdown-text"><h3>{{ mail.title }}</h3>
+                        <p>{{ mail.content }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+</body>
+</html>
